@@ -1,20 +1,28 @@
 {
   "short_name": "mFk Farm",
-  "name": "mFk Farm - Çiftlik Yönetim Sistemi",
+  "name": "mFk Farm — Çiftlik Yönetim Sistemi",
+  "description": "Hayvancılık yönetim platformu: süt, sağlık, üreme, stok ve finans takibi",
   "icons": [
     {
       "src": "/mFk.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/mFk.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#16a34a",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "categories": ["productivity", "agriculture", "business"],
+  "lang": "tr",
+  "dir": "ltr"
 }
