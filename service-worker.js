@@ -1,57 +1,59 @@
-const CACHE_NAME = 'mfk-farm-v2';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/mFk.png',
-  '/manifest.json'
-];
+const CACHE_NAME = 'mfk-farm-v5';
 
+// Kurulumda bekleme yapmadan hemen aktif ol
 self.addEventListener('install', event => {
+  self.skipWaiting();
+});
+
+// Eski tüm önbellekleri temizle ve istemcileri devral
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
 self.addEventListener('fetch', event => {
-  // Sadece GET isteklerini ve API harici statik dosyaları önbellekle
+  // API çağrılarını önbelleğe alma
   if (event.request.method !== 'GET' || event.request.url.includes('/api/')) {
     return;
   }
+
+  // HTML ve navigasyon isteklerinde HER ZAMAN Network-First (böylece güncellemeler anında görünür)
+  if (event.request.mode === 'navigate' || event.request.destination === 'document' || event.request.url.endsWith('index.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request) || caches.match('/index.html'))
+    );
+    return;
+  }
+
+  // Statik varlıklar (js/css/img) için Cache-First, fallback Network
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-        return fetch(event.request).then(response => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseToCache);
-            });
-          return response;
-        });
-      })
-  );
-});
-
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        return response;
+      });
     })
   );
 });
