@@ -1,9 +1,12 @@
-const CACHE_VERSION = 'v30-20261016-1830';
+const CACHE_VERSION = 'v31-20261016-1900';
 const CACHE_NAME = `mfk-farm-${CACHE_VERSION}`;
 
 const PRECACHE_ASSETS = [
+  './',
+  './index.html',
   './favicon.png',
-  './mFk.png'
+  './mFk.png',
+  './manifest.json'
 ];
 
 // Kurulumda hemen aktif ol (skipWaiting)
