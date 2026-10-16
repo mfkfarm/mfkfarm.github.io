@@ -1,52 +1,56 @@
-# 🌾 mFk Farm — Akıllı Çiftlik Yönetim Sistemi
+# mFk Farm — Enterprise Farm Management Platform
 
 <p align="center">
-  <img src="https://mfkfarm.github.io/mfk-logo.png" alt="mFk Farm Logo" width="160" />
+  <img src="https://mfkfarm.github.io/mfk-logo.png" alt="mFk Farm Logo" width="140" />
 </p>
 
 <p align="center">
-  <b>Büyükbaş, Küçükbaş ve Mandıra İşletmeleri İçin Yeni Nesil Akıllı Dijital Yönetim Portalı</b><br />
-  🌐 <a href="https://mfkfarm.github.io"><b>https://mfkfarm.github.io</b></a>
+  <strong>Comprehensive Digital Management and Telemetry Solution for Livestock Enterprises</strong><br />
+  Production Portal: <a href="https://mfkfarm.github.io">https://mfkfarm.github.io</a>
 </p>
-
----
-
-## 📌 Genel Bakış (Overview)
-
-**mFk Farm**, modern çiftlik işletmelerinin tüm operasyonel, idari, klinik ve finansal süreçlerini tek merkezden yönetmek üzere **mFk Games** tarafından geliştirilmiş profesyonel bir web ve mobil (PWA) çiftlik otomasyon platformudur.
-
-### 🚀 Temel Modüller ve Yetenekler
-
-* 🐄 **Sürü ve Hayvan Takibi:** Küpe no, cinsiyet, ırk, doğum, laktasyon ve soykütüğü (pedigri) ağacı yönetimi.
-* 🥛 **Süt Üretim & Kalite Analitiği:** Sabah, öğle ve akşam sağım seansları, laktasyon eğrileri ve dönemsel verim grafikleri.
-* 💊 **Klinik Sağlık & Aşı Takvimi:** Aşı randevuları, resmi ilaç takip defteri, antibiyotik arınma süresi uyarıları ve vizite kayıtları.
-* 🧬 **Üreme & Islah:** Tohumlama protokolleri (Ovsynch), gebelik teşhisi, doğum geri sayımı ve akrabalık (inbreeding) risk hesaplayıcı.
-* 💰 **Finans & Gelir-Gider Dengesi:** Kategori bazlı çiftlik nakit akışı, karlılık analizleri ve süt satış muhasebesi.
-* 📦 **Akıllı Envanter & Yem Depoları:** Kritik yem ve ilaç seviyesi uyarıları, TMR rasyon hesaplamaları ve ambar lokasyonları.
-* 🛰️ **IoT & Akıllı Tesis İzleme:** Silo seviyeleri, GPS padok haritaları, çatı GES enerji ve biyogaz gübre ölçümleri.
-
----
-
-## 🔒 Güvenlik ve Gizlilik (Security & Privacy)
-
-* Bu depo (`mfkfarm.github.io`), platformun yalnızca derlenmiş ve şifrelenmiş (minified production bundle) statik web arayüzünü barındırmaktadır.
-* Çiftlik işletmelerine ait operasyonel veriler, kullanıcı kimlik bilgileri, veritabanı altyapısı ve ana kaynak kodlar bağımsız, yüksek güvenlikli özel sunucularda ve **gizli (private)** depolarda korunmaktadır.
-* Sistemimiz 6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) standartlarına tam uyumludur.
-
----
-
-## ⚖️ Telif Hakkı ve Lisans Bildirimi (Copyright & Legal Notice)
-
-**Telif Hakkı © 2026 mFk Games. Tüm Hakları Saklıdır.**
-
-İşbu yazılım, tasarımı, algoritmaları, grafik arayüzleri ve marka unsurları **mFk Games**'in tescilli fikri ve sınai mülkiyetidir.
-
-1. **İzinsiz Kullanım Yasağı:** mFk Games'in yazılı izni olmaksızın kaynak kodların, arayüz bileşenlerinin veya dökümanların tamamı ya da bir kısmı kopyalanamaz, çoğaltılamaz, dağıtılamaz, kiralanamaz veya kamuya açık biçimde yeniden yayımlanamaz.
-2. **Tersine Mühendislik:** Kodların kaynak koda dönüştürülmesi (decompile), tersine mühendisliğe tabi tutulması veya türev eserlerinin üretilmesi kesinlikle yasaktır.
-3. Detaylı hükümler için [LICENSE](./LICENSE) ve [Gizlilik Politikası](https://mfkfarm.github.io/login) sayfalarını inceleyebilirsiniz.
-
----
 
 <p align="center">
-  Geliştirici: <b>mFk Games</b> • Web: <a href="https://mfkfarm.github.io">mfkfarm.github.io</a>
+  <img src="https://img.shields.io/badge/Status-Production%20Ready-emerald?style=flat-square" alt="Status" />
+  <img src="https://img.shields.io/badge/Security-KVKK%20%2F%20GDPR%20Compliant-blue?style=flat-square" alt="Security" />
+  <img src="https://img.shields.io/badge/Platform-Web%20%2F%20PWA%20%2F%20iOS-slate?style=flat-square" alt="Platform" />
+  <img src="https://img.shields.io/badge/License-Proprietary-slate?style=flat-square" alt="License" />
 </p>
+
+---
+
+## Genel Bakış
+
+**mFk Farm**, büyükbaş, küçükbaş ve mandıra işletmelerinin sürü yönetimi, süt verim analitiği, klinik takip, finansal planlama ve tesis telemetrisini tek bir entegre platformda birleştiren yeni nesil kurumsal bir çiftlik otomasyon sistemidir.
+
+Platform, UNIFORM-Agri ve Herdwatch gibi küresel endüstri standartlarını yerel mevzuat ve TÜRKVET entegrasyonuyla birleştirerek tarımsal işletmelerin operasyonel verimliliğini maksimize eder.
+
+---
+
+## Temel Modüller
+
+| Modül | Kapsam ve Yetenekler |
+|---|---|
+| **Sürü & Hayvan Yönetimi** | Kulak küpesi ile hızlı tarama, pedigri soyağacı takibi, padok transferleri ve damızlık akrabalık (inbreeding) risk analitiği. |
+| **Süt Üretim Analitiği** | Seans bazlı sağım ölçümleri (sabah/öğle/akşam), laktasyon verim eğrileri, tank sıcaklık takibi ve dönemsel projeksiyonlar. |
+| **Klinik Sağlık & Tedavi** | Aşı ajandası, resmi ilaç kayıt defteri (5996 Sayılı Kanun uyumlu), antibiyotik arınma süresi kontrolleri ve ultrason/vizite takibi. |
+| **Üreme & Senkronizasyon** | Ovsynch tohumlama protokol sihirbazı, gebelik muayeneleri, kuru periyot yönetimi ve doğum takvimleri. |
+| **Finans & Maliyet Muhasebesi** | Kategori bazlı nakit akışı, süt satış faturalandırması, yem maliyetleri ve brüt karlılık raporları. |
+| **Akıllı Envanter & Rasyon** | Yem stoku düşüş alarmları, TMR rasyon optimizasyonu, depo lokasyon yönetimi ve sarf malzeme takibi. |
+| **Tesis Telemetrisi & IoT** | Silo doluluk sensörleri, padok GPS sınırları, çatı GES enerji üretimi ve biyogaz tesis ölçümleri. |
+| **Sistem Yönetimi (Multi-Tenant)** | Süper yönetici denetimi, çiftlik bazlı bağımsız çalışma alanı, anlık çiftlik röntgeni ve erişim yetkilendirmesi. |
+
+---
+
+## Mimari ve Güvenlik
+
+- **Dağıtım Mimarisi:** Bu depo (`mfkfarm.github.io`), platformun şifrelenmiş ve optimize edilmiş üretim web arayüzünü (Static CDN / PWA) sunar.
+- **Veri Güvenliği:** Çiftlik operasyonel veritabanları, kimlik doğrulama mekanizmaları ve API uç noktaları bağımsız, izole edilmiş sunucularda korunmaktadır.
+- **Mevzuat Uyumluluğu:** 6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve ISO 27001 bilgi güvenliği prensiplerine uygun mimari.
+
+---
+
+## Lisans ve Fikri Mülkiyet
+
+Telif Hakkı &copy; 2026 **mFk Games**. Tüm hakları saklıdır.
+
+Bu yazılımın tasarımı, algoritmaları, grafik arayüzleri ve marka unsurları tescilli mülkiyete tabidir. Yazılı izin olmaksızın kaynak kodların tamamı veya bir kısmı çoğaltılamaz, dağıtılamaz, kiralanamaz veya tersine mühendisliğe tabi tutulamaz.
