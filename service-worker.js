@@ -1,8 +1,19 @@
 const CACHE_NAME = 'mfk-farm-v16';
 
-// Kurulumda bekleme yapmadan hemen aktif ol
+const PRECACHE_ASSETS = [
+  './',
+  './index.html',
+  './manifest.json',
+  './favicon.png'
+];
+
+// Kurulumda temel varlıkları önbelleğe al ve hemen aktif ol
 self.addEventListener('install', event => {
-  self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(PRECACHE_ASSETS).catch(err => console.warn('Precache hatası:', err));
+    }).then(() => self.skipWaiting())
+  );
 });
 
 // Eski tüm önbellekleri anında temizle ve istemcileri devral
