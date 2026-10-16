@@ -1,17 +1,18 @@
-const CACHE_NAME = 'mfk-farm-v12';
+const CACHE_NAME = 'mfk-farm-v15';
 
 // Kurulumda bekleme yapmadan hemen aktif ol
 self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
-// Eski tüm önbellekleri temizle ve istemcileri devral
+// Eski tüm önbellekleri anında temizle ve istemcileri devral
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => {
       return Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
+            console.log('Eski cache temizleniyor:', key);
             return caches.delete(key);
           }
         })
@@ -26,36 +27,22 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // HTML ve navigasyon isteklerinde HER ZAMAN Network-First (böylece güncellemeler anında görünür)
-  if (event.request.mode === 'navigate' || event.request.destination === 'document' || event.request.url.endsWith('index.html')) {
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(async () => {
-          return (await caches.match(event.request)) || (await caches.match('./index.html')) || (await caches.match('/index.html'));
-        })
-    );
-    return;
-  }
-
-  // Statik varlıklar (js/css/img) için Cache-First, fallback Network
+  // Network-First stratejisi: Her zaman önce güncel ağdan al, internet yoksa önbellekten yükle
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(response => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+    fetch(event.request)
+      .then(response => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         return response;
-      });
-    })
+      })
+      .catch(async () => {
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
+        if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+          return (await caches.match('./index.html')) || (await caches.match('/index.html'));
+        }
+      })
   );
 });
