@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mfk-farm-v15';
+const CACHE_NAME = 'mfk-farm-v16';
 
 // Kurulumda bekleme yapmadan hemen aktif ol
 self.addEventListener('install', event => {
