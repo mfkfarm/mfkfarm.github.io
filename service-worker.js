@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mfk-farm-v8';
+const CACHE_NAME = 'mfk-farm-v9';
 
 // Kurulumda bekleme yapmadan hemen aktif ol
 self.addEventListener('install', event => {
@@ -37,7 +37,9 @@ self.addEventListener('fetch', event => {
           }
           return response;
         })
-        .catch(() => caches.match(event.request) || caches.match('/index.html'))
+        .catch(async () => {
+          return (await caches.match(event.request)) || (await caches.match('./index.html')) || (await caches.match('/index.html'));
+        })
     );
     return;
   }

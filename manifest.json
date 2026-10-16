@@ -20,7 +20,7 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#16a34a",
+  "theme_color": "#064e3b",
   "background_color": "#ffffff",
   "categories": ["productivity", "agriculture", "business"],
   "lang": "tr",
